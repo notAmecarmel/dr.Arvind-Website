@@ -529,8 +529,8 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
+  gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .trust-item {
@@ -590,12 +590,13 @@ ul { list-style: none; }
 
 .expertise-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
   gap: 24px;
   margin-top: 56px;
 }
 
 .expertise-card {
+  min-width: 0;
   background: var(--white);
   border: 1px solid var(--grey-light);
   border-radius: var(--radius-lg);
@@ -2059,6 +2060,10 @@ footer {
   .hamburger { display: flex; }
 }
 
+@media (max-width: 768px) {
+  .trust-bar-inner { flex-wrap: wrap; }
+}
+
 @media (max-width: 640px) {
   .container { padding: 0 20px; }
   .container--wide { padding: 0 20px; }
@@ -2078,4 +2083,61 @@ footer {
   .clinic-hero-banner { padding: 36px 24px; }
   .hospital-visual { padding: 28px; }
   .services-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- SOCIAL SIDEBAR ---- */
+.social-sidebar {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--gold);
+  border-radius: 50%;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.social-link:hover {
+  background: var(--gold-light);
+  transform: scale(1.05);
+}
+
+.social-link img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile/Tablet adjustments */
+@media (max-width: 768px) {
+  .social-sidebar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    top: auto;
+    transform: none;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link img {
+    width: 16px;
+    height: 16px;
+  }
 }
